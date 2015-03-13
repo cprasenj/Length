@@ -13,5 +13,14 @@ public class LengthTest {
         Length l1 = new Length (1, unit.ft);
         Length l2 = new Length(12,unit.inch);
         assertEquals(l1.compare(l2),0.0,0.0);
+        assertEquals(l2.compare(l1),0.0,0.0);
+    }
+
+    @Test
+    public void CompareGives_0_for_1ft_and_1ft() {
+        Length l1 = new Length(1,unit.ft);
+        Length l2 = new Length(1,unit.ft);
+        assertEquals(l1.compare(l2),0.0,0.0);
+    assertEquals(l2.compare(l1),0.0,0.0);
     }
 }
