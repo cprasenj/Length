@@ -1,17 +1,37 @@
 package com.length;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Length {
-    private  double value;
-    private unit u;
+    protected double numericVal;
+    private Units unit;
 
-    public Length(double quantity, unit u) {
-        this.value = quantity;
-        this.u = u;
+    public Length(double numericVal, Units unit) {
+        this.numericVal = numericVal;
+        this.unit = unit;
     }
 
-    public double compare(Length l) {
-        ConvertionMultiplicant c = new ConvertionMultiplicant();
-        c.createConversionList();
-        return Math.abs(this.value*c.unitToCm.get(u)-l.value*c.unitToCm.get(l.u));
+    public boolean isEqualTo(Length that) {
+        LengthConverter converter = new LengthConverter();
+        Length l1 = converter.convert(this, Units.CM);
+        Length l2 = converter.convert(that, Units.CM);
+        return l1.numericVal - l2.numericVal == 0.0;
     }
+
+//    @Override
+//    public boolean equals(Length that) {
+//        return isEqualTo(that);
+//    }
+//
+//    private void createConversionList(){
+//        unitToCm.put(Units.FT,30.48);
+//        unitToCm.put(Units.CM,1.0);
+//        unitToCm.put(Units.INCH,2.54);
+//    }
+//
+//    public double compare(Length l) {
+//        createConversionList();
+//        return Math.abs(this.value*unitToCm.get(u)-l.value*unitToCm.get(l.u));
+//    }
 }
