@@ -1,6 +1,6 @@
 package com.length;
 
 public enum  Units {
-    FT,CM,INCH
+    FT,CM,INCH,GALLON,LT
 }
 

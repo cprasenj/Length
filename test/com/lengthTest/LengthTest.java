@@ -2,11 +2,11 @@ package com.lengthTest;
 
 
 import com.length.Length;
-import com.length.ScalarQuantity;
 import com.length.Units;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LengthTest {
@@ -50,6 +50,20 @@ public class LengthTest {
     }
 
     @Test
+    public void _12inches_and_1feet_are_equal () {
+        Length l1 = new Length(1, Units.FT);
+        Length l2 = new Length(12, Units.INCH);
+        assertTrue(l1.isEqualTo(l2));
+    }
+
+    @Test
+    public void _13inches_and_1feet_are_notequal () {
+        Length l1 = new Length(1, Units.FT);
+        Length l2 = new Length(13, Units.INCH);
+        assertFalse(l1.isEqualTo(l2));
+    }
+
+    @Test
     public void convert_should_convert_1inch_to_2_54cm () {
         Length l = new Length(1, Units.INCH);
         Length actual = l.convert(Units.CM);
@@ -61,20 +75,23 @@ public class LengthTest {
     public void CompareGives_0_for_1_ft_and_12_in() {
         Length l1 = new Length (1, Units.FT);
         Length l2 = new Length(12, Units.INCH);
-        assertEquals(l1.compare(l2),0.0,0.0);
-        assertEquals(l2.compare(l1),0.0,0.0);
+        assertEquals(l1.compare(l2,Units.INCH),0.0,0.0);
+        assertEquals(l2.compare(l1,Units.CM),0.0,0.0);
     }
 
     @Test
     public void CompareGives_0_for_1ft_and_1ft() {
         Length l1 = new Length(1,Units.FT);
         Length l2 = new Length(1,Units.FT);
-        assertEquals(l1.compare(l2),0.0,0.0);
-    assertEquals(l2.compare(l1),0.0,0.0);
+        assertEquals(l1.compare(l2,Units.INCH),0.0,0.0);
+        assertEquals(l2.compare(l1,Units.CM),0.0,0.0);
     }
-//
-//    @Test
-//    public void CompareGives_0_for_1cm_and_1cm() {
-//
-//    }
+
+    @Test
+    public void CompareGives_1_for_2ft_and_1ft() {
+        Length l1 = new Length(2,Units.FT);
+        Length l2 = new Length(1,Units.FT);
+        assertEquals(l1.compare(l2,Units.FT),1.0,0.0);
+        assertEquals(l1.compare(l2,Units.INCH),12.0,0.0);
+    }
 }

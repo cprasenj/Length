@@ -3,11 +3,13 @@ package com.length;
 /**
  * Created by cprasenj on 3/16/2015.
  */
-public class Volume {
-    public Volume(double numericVal, VolUnits unit) {
+public class Volume extends ScalarQuantity{
+    static{
+        conversionFactors.put(Units.LT,1.0);
+        conversionFactors.put(Units.GALLON,3.78);
     }
-
-    public double compare(Volume v2) {
-        return 0;
+    public Volume(double numericVal, Units unit) {
+        super(numericVal, unit);
+        this.baseUnit = Units.LT;
     }
 }

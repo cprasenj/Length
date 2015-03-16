@@ -11,16 +11,11 @@ public class Length extends ScalarQuantity {
     }
     public Length(double numericVal, Units unit) {
         super(numericVal, unit);
+        this.baseUnit = Units.CM;
     }
 
-    public boolean isEqualTo(Length that) {
-        double l1 = this.changeTo(Units.CM);
-        double l2 = that.changeTo(Units.CM);
-        return (l1 - l2 < 0.1) && (this.unit.equals(that.unit));
-    }
-
-    public Length convert(Units unit) {
-        return new Length(this.changeTo(unit),unit);
+    public Length convert(Units u) {
+        return new Length(changeTo(u),u);
     }
 
     public String toString() {
