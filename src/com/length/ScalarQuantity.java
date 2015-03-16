@@ -1,10 +1,13 @@
 package com.length;
 
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScalarQuantity {
+
+public abstract class ScalarQuantity {
     protected static final Map<Units, Double> conversionFactors = new HashMap<Units, Double>();
 
     protected Units baseUnit = null;
@@ -30,4 +33,18 @@ public class ScalarQuantity {
         return Math.abs(this.changeTo(u) - q.changeTo(u));
     }
 
+    public ScalarQuantity add(ScalarQuantity that, Units unit) {
+        try {
+            return this.getClass().getConstructor(double.class,Units.class).newInstance(this.changeTo(unit)+that.changeTo(unit),unit);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

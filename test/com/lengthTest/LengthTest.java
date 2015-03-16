@@ -2,11 +2,11 @@ package com.lengthTest;
 
 
 import com.length.Length;
+import com.length.Length;
 import com.length.Units;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LengthTest {
@@ -50,17 +50,11 @@ public class LengthTest {
     }
 
     @Test
-    public void _12inches_and_1feet_are_equal () {
-        Length l1 = new Length(1, Units.FT);
-        Length l2 = new Length(12, Units.INCH);
-        assertTrue(l1.isEqualTo(l2));
-    }
-
-    @Test
-    public void _13inches_and_1feet_are_notequal () {
-        Length l1 = new Length(1, Units.FT);
-        Length l2 = new Length(13, Units.INCH);
-        assertFalse(l1.isEqualTo(l2));
+    public void _12inches_and_1feet_ () {
+        Length l = new Length(1, Units.FT);
+        Length actual = l.convert(Units.CM);
+        Length expected = new Length(30.48, Units.CM);
+        assertTrue(expected.isEqualTo(actual));
     }
 
     @Test
@@ -93,5 +87,14 @@ public class LengthTest {
         Length l2 = new Length(1,Units.FT);
         assertEquals(l1.compare(l2,Units.FT),1.0,0.0);
         assertEquals(l1.compare(l2,Units.INCH),12.0,0.0);
+    }
+
+    @Test
+    public void add_1cm_with_1cm_should_give_2cm() {
+        Length sq1 = new Length(1, Units.CM);
+        Length sq2 = new Length(1, Units.CM);
+        Length expected = new Length(2, Units.CM);
+        Length actual = (Length)sq1.add(sq2, Units.CM);
+        assertTrue(expected.isEqualTo(actual));
     }
 }

@@ -12,4 +12,8 @@ public class Volume extends ScalarQuantity{
         super(numericVal, unit);
         this.baseUnit = Units.LT;
     }
+
+    public Volume convert(Units u) {
+        return new Volume(changeTo(u),u);
+    }
 }

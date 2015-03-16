@@ -9,6 +9,7 @@ public class Length extends ScalarQuantity {
         conversionFactors.put(Units.CM,1.0);
         conversionFactors.put(Units.INCH,2.54);
     }
+
     public Length(double numericVal, Units unit) {
         super(numericVal, unit);
         this.baseUnit = Units.CM;
