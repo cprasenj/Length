@@ -13,7 +13,7 @@ public class LengthConverter {
     }
 
     public Length convert(Length length, Units unit) {
-        return new Length((length.numericVal*unitToCm.get(Units.CM))/unitToCm.get(unit),unit);
+        return new Length((length.numericVal*unitToCm.get(length.unit)/unitToCm.get(unit)),unit);
     }
 }
 
