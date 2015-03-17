@@ -34,8 +34,9 @@ public abstract class ScalarQuantity {
     }
 
     public ScalarQuantity add(ScalarQuantity that, Units unit) {
+        double result = this.changeTo(unit)+that.changeTo(unit);
         try {
-            return this.getClass().getConstructor(double.class,Units.class).newInstance(this.changeTo(unit)+that.changeTo(unit),unit);
+            return this.getClass().getConstructor(double.class,Units.class).newInstance(result,unit);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

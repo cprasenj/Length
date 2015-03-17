@@ -43,5 +43,4 @@ public class VolumeTest {
         Volume actual = (Volume)sq1.add(sq2, Units.LT);
         assertTrue(expected.isEqualTo(actual));
     }
-
 }
